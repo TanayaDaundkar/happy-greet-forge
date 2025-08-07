@@ -9,3 +9,10 @@ export type NewsItem = {
   published: Date;      // ✅ Remove `Timestamp` (Firebase-specific)
   fetchedAt?: Date;     // ✅ Same here
 };
+
+export interface AIUpdatesState {
+  loading: boolean;
+  error: string | null;
+  newsItems: NewsItem[] | null;
+  useSampleData: boolean;
+}

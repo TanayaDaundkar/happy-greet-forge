@@ -104,7 +104,7 @@ export default function Community() {
             </CardHeader>
             <CardContent>
               <CreatePostForm
-                user={user}
+                session={user ? { user } as any : null}
                 activeTab={activeTab}
                 onPostCreated={fetchPosts}
               />

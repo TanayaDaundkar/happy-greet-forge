@@ -5,7 +5,7 @@ import { DesktopNavItem } from "./header/DesktopNavItem";
 import { MobileNav } from "./header/MobileNav";
 import { MobileMenuButton } from "./header/MobileMenuButton";
 import { menuItems } from "./header/menuData";
-import { useAuth } from "@/hooks/useSupabaseAuth";
+import { useSupabaseAuth } from "@/hooks/useSupabaseAuth";
 import { UserProfileMenu } from "./header/UserProfileMenu";
 
 export function Header() {
@@ -14,7 +14,7 @@ export function Header() {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, loading } = useAuth();
+  const { user, loading } = useSupabaseAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,7 +101,7 @@ export function Header() {
                 </button>
               </>
             ) : (
-              <UserProfileMenu user={user} />
+              <UserProfileMenu />
             )}
           </div>
         </div>
@@ -113,7 +113,7 @@ export function Header() {
           </div>
 
           <div className="flex items-center space-x-2">
-            {user && <UserProfileMenu user={user} />}
+            {user && <UserProfileMenu />}
             <MobileMenuButton toggleMenu={toggleMenu} />
           </div>
         </div>

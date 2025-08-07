@@ -20,7 +20,7 @@ import CareerDevelopment from "./pages/CareerDevelopment";
 import { ChatBotProvider } from "./hooks/use-chatbot";
 import { ChatButton } from "./components/chat/ChatButton";
 import { ChatInterface } from "./components/chat/ChatInterface";
-import { useAuth } from "./hooks/useSupabaseAuth";
+import { useSupabaseAuth } from "./hooks/useSupabaseAuth";
 import AIUpdates from "./pages/AIUpdates";
 import TechInsights from "./pages/TechInsights";
 import FinanceAdvisor from "./pages/FinanceAdvisor";
@@ -37,7 +37,7 @@ import PricingPage from "./pages/PricingPage";
 const queryClient = new QueryClient();
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-  const { user, loading } = useAuth();
+  const { user, loading } = useSupabaseAuth();
   
   if (loading) return <div className="flex h-screen items-center justify-center">Loading...</div>;
   

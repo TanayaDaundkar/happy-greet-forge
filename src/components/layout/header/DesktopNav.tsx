@@ -68,7 +68,7 @@ export function DesktopNav({
               </button>
             </>
           ) : (
-            <UserProfileMenu user={user} />
+            <UserProfileMenu />
           )}
         </div>
       </div>
