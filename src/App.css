@@ -1,3 +1,8 @@
+body {
+  @apply bg-gradient-to-r from-[#FFF4ED] via-[#F2FAFC] to-[#E8F3F9];
+  min-height: 100vh;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
