@@ -17,9 +17,9 @@ export function ErrorState({ error, onRetry }: ErrorStateProps) {
                           error.includes("permission_denied");
   
   return (
-    <Card className="border-destructive/50">
+    <Card className="border-border">
       <CardHeader>
-        <div className="flex items-center gap-2 text-destructive">
+        <div className="flex items-center gap-2 text-foreground">
           <AlertCircle className="h-5 w-5" />
           <CardTitle>Error Loading Updates</CardTitle>
         </div>
