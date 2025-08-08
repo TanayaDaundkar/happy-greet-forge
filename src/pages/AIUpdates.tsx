@@ -1,20 +1,16 @@
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
-import { fetchNewsItems } from "@/services/supabaseService";
-import { SummaryContent } from "@/components/ai-updates/SummaryContent";
+import { MainLayout } from "@/components/layout/MainLayout";
+import { NewsCard } from "@/components/ai-updates/NewsCard";
 import { LoadingState } from "@/components/ai-updates/LoadingState";
 import { ErrorState } from "@/components/ai-updates/ErrorState";
-import { EmptyState } from "@/components/ai-updates/EmptyState";
+import { fetchNewsItems } from "@/services/supabaseService";
 import { NewsItem } from "@/types/aiUpdates";
-import { sampleNewsItems } from "@/config/aiUpdates";
+import { toast } from 'sonner';
 
 export default function AIUpdates() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
-  const [useSampleData, setUseSampleData] = useState<boolean>(false);
-  const { toast } = useToast();
 
   const parseDates = (items: any[]): NewsItem[] => {
     return items.map((item) => ({
@@ -27,34 +23,20 @@ export default function AIUpdates() {
   const fetchNews = async () => {
     setLoading(true);
     setError(null);
-    setUseSampleData(false);
 
     try {
       const news = await fetchNewsItems();
       const parsedNews = parseDates(news);
       setNewsItems(parsedNews);
 
-      if (parsedNews.length === 0) {
-        toast({
-          title: "No News Found",
-          description: "No AI news found. Try adding some data or using sample data.",
-        });
-      } else {
-        toast({
-          title: "News Updated",
-          description: `Successfully loaded ${parsedNews.length} AI news.`,
-        });
+      if (parsedNews.length > 0) {
+        toast.success(`Successfully loaded ${parsedNews.length} news items from the latest batch`);
       }
     } catch (err) {
       console.error("Supabase fetch error:", err);
       const errorMessage = err instanceof Error ? err.message : "An unknown error occurred";
-
       setError(errorMessage);
-      toast({
-        title: "Error",
-        description: `Failed to fetch AI updates: ${errorMessage}`,
-        variant: "destructive",
-      });
+      toast.error(`Failed to fetch AI updates: ${errorMessage}`);
     } finally {
       setLoading(false);
     }
@@ -62,59 +44,52 @@ export default function AIUpdates() {
 
   useEffect(() => {
     fetchNews();
-
-    toast({
-      title: "Fetching AI News",
-      description: "Loading the latest AI updates",
-    });
-
-    const interval = setInterval(fetchNews, 60 * 1000);
+    
+    // Refresh news every 5 minutes
+    const interval = setInterval(fetchNews, 5 * 60 * 1000);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleShowSampleData = () => {
-    setUseSampleData(true);
-    setError(null);
-
-    toast({
-      title: "Sample Data Loaded",
-      description: "Showing sample AI news for demonstration purposes.",
-    });
-  };
-
-  const itemsToDisplay = useSampleData ? sampleNewsItems : newsItems;
-
   return (
-    <div className="bg-gradient-to-r from-[#FFF4ED] via-[#F9FAFB] to-[#EAF6FA] min-h-screen py-12">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between mb-6">
-          <div>
-            {(error || itemsToDisplay.length === 0) && !useSampleData && (
-              <Button
-                variant="secondary"
-                onClick={handleShowSampleData}
-                className="mr-2 bg-[#F57E20] hover:bg-[#e76c0f] text-white"
-              >
-                Show Sample Data
-              </Button>
-            )}
-          </div>
+    <MainLayout>
+      <div className="container mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">AI Updates</h1>
+          <p className="text-muted-foreground">
+            Latest artificial intelligence news and developments
+          </p>
         </div>
 
-        <div className="space-y-8">
-          {loading ? (
-            <LoadingState />
-          ) : error && !useSampleData ? (
-            <ErrorState error={error} onRetry={fetchNews} />
-          ) : itemsToDisplay.length > 0 ? (
-            <SummaryContent newsItems={itemsToDisplay} />
-          ) : (
-            <EmptyState onRefresh={fetchNews} />
-          )}
-        </div>
+        {/* Content */}
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <LoadingState key={index} />
+            ))}
+          </div>
+        ) : error ? (
+          <ErrorState error={error} onRetry={fetchNews} />
+        ) : newsItems.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {newsItems.map((newsItem) => (
+              <NewsCard key={newsItem.id} newsItem={newsItem} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground mb-4">No news items found.</p>
+            <button 
+              onClick={fetchNews}
+              className="text-primary hover:underline"
+            >
+              Try refreshing
+            </button>
+          </div>
+        )}
       </div>
-    </div>
+    </MainLayout>
   );
 }
 
