@@ -9,12 +9,11 @@ export function Footer() {
     {
       title: "Platform",
       links: [
-        { name: "Knowledge Hub", href: null, clickable: false },
-        { name: "Community", href: null, clickable: false },
+        { name: "AI Updates", href: "/ai-updates" },
         { name: "Pricing", href: "/pricing-page" },
         { name: "Enterprise Solutions", href: "/enterprise" },
-        { name: "About", href: null, clickable: false },
-        { name: "AI Updates", href: "/ai-updates" },
+        { name: "Knowledge Hub", href: null, clickable: false },
+        { name: "Community", href: null, clickable: false },
       ]
     },
     {
