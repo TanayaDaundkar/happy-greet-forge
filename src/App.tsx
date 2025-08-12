@@ -33,6 +33,7 @@ import CareerCenter from "./pages/CareerCenter";
 import ExploreCoursesPage from "./pages/ExploreCoursesPage";
 import GetStartedPage from "./pages/GetStartedPage";
 import PricingPage from "./pages/PricingPage";
+import Platform from "./pages/Platform";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,7 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/platform" element={<Platform />} />
                 <Route path="/career-development" element={<CareerDevelopment />} />
                 <Route path="/fincode" element={<FinCode />} />
                 <Route path="/lets-advance" element={<LetsAdvance />} />
