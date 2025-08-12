@@ -27,14 +27,12 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
 
       toast({
         title: "Login successful",
@@ -45,7 +43,6 @@ export default function Login() {
       setPassword("");
       setIsLoading(false);
 
-      // Navigate to home
       window.location.href = "/";
     } catch (error: any) {
       setIsLoading(false);
@@ -70,7 +67,9 @@ export default function Login() {
 
         <Card className="border-white/40 shadow-xl bg-white/90 backdrop-blur-sm hover:shadow-2xl transition-all duration-300">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold font-inter text-gray-900">Welcome back</CardTitle>
+            <CardTitle className="text-2xl font-bold font-inter text-gray-900">
+              Welcome back
+            </CardTitle>
             <CardDescription className="font-inter text-gray-600">
               Enter your credentials to access your account
             </CardDescription>
@@ -79,21 +78,32 @@ export default function Login() {
           <form onSubmit={handleSubmit}>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email" className="font-inter text-gray-700 font-medium">Email</Label>
+                <Label
+                  htmlFor="email"
+                  className="font-inter text-gray-700 font-medium"
+                >
+                  Email
+                </Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="your.email@example.com"
+                  // placeholder="your.email@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="font-inter bg-white/80 border-gray-200 text-gray-800 rounded-xl h-12 focus:ring-2 focus:ring-[#017ea6]/20 focus:border-[#017ea6] transition-all duration-300 hover:shadow-md"
+                  className="font-inter bg-white/80 border-gray-200 text-gray-800 rounded-xl h-12 hover:shadow-md transition-all duration-300 focus:outline-none focus:ring-0 focus:border-gray-200"
+                  style={{ boxShadow: "none" }}
                 />
               </div>
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password" className="font-inter text-gray-700 font-medium">Password</Label>
+                  <Label
+                    htmlFor="password"
+                    className="font-inter text-gray-700 font-medium"
+                  >
+                    Password
+                  </Label>
                   <a
                     href="#"
                     className="text-sm font-medium text-[#017ea6] underline-offset-4 hover:underline font-inter hover:text-[#0496c7] transition-colors duration-300"
@@ -107,7 +117,8 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="font-inter bg-white/80 border-gray-200 text-gray-800 rounded-xl h-12 focus:ring-2 focus:ring-[#017ea6]/20 focus:border-[#017ea6] transition-all duration-300 hover:shadow-md"
+                  className="font-inter bg-white/80 border-gray-200 text-gray-800 rounded-xl h-12 hover:shadow-md transition-all duration-300 focus:outline-none focus:ring-0 focus:border-gray-200"
+                  style={{ boxShadow: "none" }}
                 />
               </div>
             </CardContent>

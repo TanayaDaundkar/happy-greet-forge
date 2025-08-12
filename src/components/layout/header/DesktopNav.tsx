@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { DesktopNavItem } from "./DesktopNavItem";
 import { MenuItem } from "./types";
 import { UserProfileMenu } from "./UserProfileMenu";
-import { AIAgentsButton } from "@/components/ai/AIAgentsButton";
+
 import { Link } from "react-router-dom"; // Add this import
 
 interface DesktopNavProps {

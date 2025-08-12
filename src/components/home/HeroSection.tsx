@@ -17,7 +17,7 @@ export function HeroSection() {
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-8">
+      <section className="relative min-h-screen flex items-center justify-start overflow-hidden pt-8">
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_30%,rgba(12,125,167,0.05),transparent_50%)]"></div>
@@ -28,54 +28,41 @@ export function HeroSection() {
           <div className="max-w-8xl mx-auto ">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
               {/* Left side - Content */}
-           <div className="text-left max-w-2xl pt-4 pl-12 sm:pl-6 md:pl-0 ml-6 lg:ml-12">
-
+              <div className="text-left md:text-center max-w-2xl pt-4 pl-2 sm:pl-6 md:pl-0 ml-0 md:ml-0">
                 <div className="mb-12">
-                <h2
-  className="text-4xl md:text-6xl font-medium font-montserrat mb-8 ml-5 pt-5 bg-gradient-to-r from-[#0077B6] to-[#40C7E8] bg-clip-text text-transparent"
-  style={{ lineHeight: '1.25' }} // slightly increased line height for safety
->
-  Reimagining Work, <span className="whitespace-nowrap">Learning &amp;Purpose</span>
-  <br />
-  for the <span style={{ color: '#F57E20' }}>AI Era</span>
-</h2>
-
-
-
+                  <h2
+                    className="text-4xl md:text-6xl font-medium font-montserrat mb-8 pt-5 bg-gradient-to-r from-[#0077B6] to-[#40C7E8] bg-clip-text text-transparent"
+                    style={{ lineHeight: '1.25' }}
+                  >
+                    Reimagining Work, <span className="whitespace-nowrap">Learning &amp; Purpose</span>
+                    <br />
+                    for the <span style={{ color: '#F57E20' }}>AI Era</span>
+                  </h2>
                 </div>
-              <div className="flex flex-wrap justify-start gap-3 mb-10">
-  {['Hyper-Personalized', 'Future-Proof', 'Career Acceleration'].map((feature) => (
-    <span
-      key={feature}
-      className="px-4 py-2 border-2 border-transparent rounded-full text-sm font-medium font-montserrat"
-      style={{
-        background: 'linear-gradient(white, white) padding-box, linear-gradient(to right, #40C7E8, #0077B6) border-box',
-        border: '2px solid transparent',
-        borderRadius: '9999px',
-        color: 'black',
-        display: 'inline-flex',
-        alignItems: 'center',
-      }}
-    >
-      <Sparkles className="inline w-4 h-4 mr-1" style={{ color: '#40C7E8' }} />
-      {feature}
-    </span>
-  ))}
-</div>
 
-                {/* <div className="flex flex-col sm:flex-row gap-4 justify-start">
-                  <Button variant="orange" className="font-montserrat font-medium px-8 py-3 hover-scale">
-                    Begin Your Assessment
-                  </Button>
-                  <Button className="font-montserrat font-medium px-8 py-3 bg-[#0C7DA7] text-white hover:bg-white hover:text-black transition-all duration-300 ease-in-out focus:outline-none border-none">
-                    Explore platform
-                  </Button>
-                </div> */}
+                <div className="flex flex-col sm:flex-row flex-wrap justify-start items-start gap-3 mb-10">
+                  {['Hyper-Personalized', 'Future-Proof', 'Career Acceleration'].map((feature) => (
+                    <span
+                      key={feature}
+                      className="px-4 py-2 border-2 border-transparent rounded-full text-sm font-medium font-montserrat"
+                      style={{
+                        background: 'linear-gradient(white, white) padding-box, linear-gradient(to right, #40C7E8, #0077B6) border-box',
+                        border: '2px solid transparent',
+                        borderRadius: '9999px',
+                        color: 'black',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Sparkles className="inline w-4 h-4 mr-1" style={{ color: '#40C7E8' }} />
+                      {feature}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               {/* Right side - Logo with Animation */}
-             <div className="flex justify-center lg:justify-center ">
-
+              <div className="flex justify-center lg:justify-center ">
                 <div className="w-80 h-80 md:w-96 md:h-96 flex items-center justify-center">
                   <img 
                     src="/lovable-uploads/logo_gc.png" 

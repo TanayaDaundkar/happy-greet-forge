@@ -13,7 +13,7 @@ export function TestimonialsSection() {
   const testimonials = [
     {
       icon: <GraduationCap className="h-6 w-6 text-white" />,
-      title: "Higer Education Students ",
+      title: "Higher Education Students ",
       description:
         "Discover your path, build job-ready skills, and launch your career with AI-powered guidance.",
       benefits: [

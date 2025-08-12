@@ -221,7 +221,7 @@ const CareerDevelopment = () => {
     },
     {
       name: "Rohini Satale",
-      role: "Software Developer at Gurukul Code",
+      role: "Software Developer - AI & Platform Engineer at GurukulCode ",
       quote: "Starting with Gurukul Code as a learner, I was guided through every step of my career journey — from discovering AI careers to landing a role within the same platform. ",
       rating: 5
     }

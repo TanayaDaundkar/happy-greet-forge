@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { MenuItem } from "./types";
@@ -35,7 +34,7 @@ export function MobileNavItem({
         <div>
           <button
             onClick={() => toggleSubmenu(item.title)}
-            className="flex items-center justify-between w-full text-left px-3 py-3 rounded-md text-foreground/80 hover:text-primary hover:bg-gray-50 font-lexend font-bold text-base transition-colors"
+            className="flex items-center justify-between w-full text-left px-3 py-3 rounded-full text-gray-700 font-lexend font text-base transition-colors duration-200 hover:bg-gray-50 hover:text-[#017ea6]"
           >
             <span>{item.title}</span>
             <ChevronDown
@@ -45,12 +44,12 @@ export function MobileNavItem({
             />
           </button>
           {openSubmenu === item.title && (
-            <div className="pl-4 mt-1 space-y-1 border-l-2 border-muted bg-white rounded-md">
+            <div className="pl-4 mt-1 space-y-1 border-l-2 border-[#F57E20] bg-white rounded-md">
               {item.submenu.map((subitem) => (
                 <Link
                   key={subitem.title}
                   to={subitem.path}
-                  className="block px-3 py-2 rounded-md text-sm text-foreground/80 hover:text-primary hover:bg-gray-50 font-lexend transition-colors"
+                  className="block px-3 py-2 rounded-full text-sm text-gray-700 font-lexend transition-colors duration-200 hover:bg-gray-50 hover:text-[#F57E20]"
                   onClick={handleSubmenuClick}
                 >
                   {subitem.title}
@@ -62,10 +61,10 @@ export function MobileNavItem({
       ) : (
         <Link
           to={item.path}
-          className={`block px-3 py-3 rounded-md transition-colors font-lexend font-bold text-base hover:bg-gray-50 ${
+          className={`block px-3 py-3 rounded-full transition-colors duration-200 font-lexend font text-base text-gray-700 hover:bg-gray-50 hover:text-[#017ea6] ${
             isActive(item.path) 
-              ? "text-primary font-bold bg-gray-50" 
-              : "text-foreground/80 hover:text-primary"
+              ? "bg-gray-50 text-[#56C7DF]"
+              : ""
           }`}
           onClick={handleLinkClick}
         >

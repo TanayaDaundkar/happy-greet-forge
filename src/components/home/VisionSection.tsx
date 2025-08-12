@@ -45,12 +45,14 @@ const VisionSection = () => {
           </div>
         </div>
 
-        {/* Platform Cards - Fixed alignment */}
+        {/* Platform Cards - Mobile smaller */}
         <div className="grid lg:grid-cols-3 gap-8 mb-8">
           {platforms.map((platform, index) => (
             <div 
               key={platform.title}
-              className="group relative overflow-hidden rounded-2xl bg-white border border-gray-200 p-8 hover:shadow-xl transition-all duration-500 animate-fade-in shadow-sm"
+              className="group relative overflow-hidden rounded-2xl bg-white border border-gray-200 
+                         p-6 sm:p-8 hover:shadow-xl transition-all duration-500 animate-fade-in shadow-sm
+                         transform scale-95 sm:scale-100"
               style={{ animationDelay: `${index * 200}ms` }}
             >
               {/* Background Gradient */}
@@ -64,26 +66,26 @@ const VisionSection = () => {
                     {platform.icon}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-lexend font-bold text-brand-dark mb-1">
+                    <h3 className="text-xl sm:text-2xl font-lexend font-bold text-brand-dark mb-1">
                       {platform.title}
                     </h3>
                     
                     {/* Subtitle */}
-                    <p className="bg-brand-orange bg-clip-text text-transparent font-lexend font-bold">
+                    <p className="bg-brand-orange bg-clip-text text-transparent font-lexend font-bold text-sm sm:text-base">
                       {platform.subtitle}
                     </p>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="text-black font-lexend mb-6 leading-relaxed">
+                <p className="text-black font-lexend mb-6 leading-relaxed text-sm sm:text-base">
                   {platform.description}
                 </p>
 
                 {/* Features */}
-                <div className="space-y-2 mb-8 ">
+                <div className="space-y-2 mb-8">
                   {platform.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-sm font-lexend text-black">
+                    <div key={idx} className="flex items-center text-xs sm:text-sm font-lexend text-black">
                       <div className="w-1.5 h-1.5 bg-brand-orange rounded-full mr-3"></div>
                       {feature}
                     </div>
@@ -93,7 +95,7 @@ const VisionSection = () => {
                 {/* CTA */}
                 <button
                   onClick={() => navigate(platform.href)}
-                  className="mt-auto inline-flex items-center bg-gradient-to-r from-[#40C7E8] to-[#0077B6] bg-clip-text text-transparent font-lexend font-semibold hover:opacity-80 transition-opacity group"
+                  className="mt-auto inline-flex items-center bg-gradient-to-r from-[#40C7E8] to-[#0077B6] bg-clip-text text-transparent font-lexend font-semibold hover:opacity-80 transition-opacity group text-sm sm:text-base"
                 >
                   Explore Platform
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

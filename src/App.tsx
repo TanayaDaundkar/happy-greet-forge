@@ -17,9 +17,9 @@ import Community from "./pages/Community";
 import NotFound from "./pages/NotFound";
 import ComingSoon from "./pages/ComingSoon";
 import CareerDevelopment from "./pages/CareerDevelopment";
-import { ChatBotProvider } from "./hooks/use-chatbot";
-import { ChatButton } from "./components/chat/ChatButton";
-import { ChatInterface } from "./components/chat/ChatInterface";
+// import { ChatBotProvider } from "./hooks/use-chatbot";
+// import { ChatButton } from "./components/chat/ChatButton";
+// import { ChatInterface } from "./components/chat/ChatInterface";
 import { useSupabaseAuth } from "./hooks/useSupabaseAuth";
 import AIUpdates from "./pages/AIUpdates";
 import TechInsights from "./pages/TechInsights";
@@ -52,7 +52,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <ChatBotProvider>
+        {/* <ChatBotProvider> */}
           <Toaster />
           <Sonner />
           <BrowserRouter>
@@ -98,10 +98,10 @@ const App = () => {
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </MainLayout>
-            <ChatButton />
-            <ChatInterface />
+            {/* <ChatButton /> */}
+            {/* <ChatInterface /> */}
           </BrowserRouter>
-        </ChatBotProvider>
+        {/* </ChatBotProvider> */}
       </TooltipProvider>
     </QueryClientProvider>
   );

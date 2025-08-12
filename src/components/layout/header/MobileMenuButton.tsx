@@ -9,10 +9,10 @@ export function MobileMenuButton({ toggleMenu }: MobileMenuButtonProps) {
   return (
     <button
       onClick={toggleMenu}
-      className="lg:hidden text-foreground focus:outline-none p-2 rounded-md hover:bg-muted/80 transition-colors"
+      className="lg:hidden focus:outline-none p-2 rounded-md bg-transparent hover:bg-gray-100 transition-colors"
       aria-label="Open menu"
     >
-      <Menu size={24} />
+      <Menu size={24} className="text-black"/>
     </button>
   );
 }

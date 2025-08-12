@@ -31,9 +31,9 @@ const Index = () => {
       <VisionSection />
 
       {/* ✅ AI News Section */}
-      <div className="px-4 sm:px-8 md:px-16 lg:px-32 py-10 bg-white">
+      {/* <div className="px-4 sm:px-8 md:px-16 lg:px-32 py-10 ">
         <SummaryContent newsItems={newsItems} />
-      </div>
+      </div> */}
 
       <TestimonialsSection />
       <CTASection />

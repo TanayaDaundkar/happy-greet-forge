@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/sheet";
 import { X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { AIAgentsButton } from "@/components/ai/AIAgentsButton";
 import { supabase } from "@/lib/supabase"; // ✅ adjust path if needed
 
 interface MobileNavProps {
@@ -58,7 +57,7 @@ export function MobileNav({
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetContent side="right" className="w-[300px] sm:w-[350px] p-0 bg-white">
+      <SheetContent side="right" className="w-[300px] sm:w-[350px] p-0 bg-white border-none" >
         <SheetHeader className="border-b p-4 bg-white">
           <div className="flex items-center justify-end">
             <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsOpen(false)}>
@@ -78,18 +77,14 @@ export function MobileNav({
               setIsOpen={setIsOpen}
             />
           ))}
-          <div className="pt-4 flex flex-col space-y-3">
-            <div className="mb-2">
-              <AIAgentsButton />
-            </div>
             {user ? (
-              <div className="border-t pt-4">
+              <div className="pt-4 border-t-0">
                 <div className="text-sm font-medium mb-2 font-lexend">
                   Signed in as {user.email}
                 </div>
                 <Button 
                   className="w-full font-lexend font-bold"
-                  variant="outline"
+                
                   onClick={handleSignOut}
                 >
                   Sign Out
@@ -97,22 +92,26 @@ export function MobileNav({
               </div>
             ) : (
               <>
-                <Button variant="outline" className="w-full font-lexend font-bold text-base py-3" onClick={() => {
-                  handleLogin();
-                  setIsOpen(false);
-                }}>
+                {<Button
+                  
+                  className="w-full font-lexend font-bold text-base py-3 border border-[#036D9B] text-[#036D9B] bg-white rounded-full hover:bg-[#036D9B] hover:text-white transition-colors duration-300"
+                  onClick={() => {
+                    handleLogin();
+                    setIsOpen(false);
+                  }}
+                >
                   Log in
-                </Button>
-                <Button className="w-full font-lexend font-bold text-base py-3" onClick={() => {
+                </Button>}
+
+                <Button className="w-full bg-gradient-to-r from-[#f37c20] to-[#ff8c42] text-white text-base py-3 rounded-full font-inter font-medium hover:shadow-lg hover:shadow-[#f37c20]/30 transition-all duration-300 hover:scale-105" onClick={() => {
                   handleSignup();
                   setIsOpen(false);
-                }} style={{ backgroundColor: '#0C7DA7' }}>
+                }} style={{ backgroundColor: '#F57E20' }}>
                   Start Your Journey
                 </Button>
               </>
             )}
           </div>
-        </div>
       </SheetContent>
     </Sheet>
   );

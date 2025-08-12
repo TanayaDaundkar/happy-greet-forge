@@ -1,6 +1,11 @@
-
 import { AlertCircle } from "lucide-react";
-import { Card, CardContent, CardHeader, CardDescription, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardDescription,
+  CardTitle
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
@@ -11,61 +16,62 @@ interface ErrorStateProps {
 }
 
 export function ErrorState({ error, onRetry }: ErrorStateProps) {
-  // Check if it's a Firebase error
-  const isFirebaseError = error.includes("Firebase") || 
-                          error.includes("database") ||
-                          error.includes("permission_denied");
-  
+  const isSupabaseError = error.toLowerCase().includes("supabase") || error.toLowerCase().includes("fetch");
+
   return (
-    <Card className="border-border">
+    <Card className="bg-white border-border">
       <CardHeader>
         <div className="flex items-center gap-2 text-foreground">
           <AlertCircle className="h-5 w-5" />
           <CardTitle>Error Loading Updates</CardTitle>
         </div>
         <CardDescription>
-          We encountered a problem while fetching the latest AI updates from Firebase.
+          We encountered a problem while fetching the latest AI updates from Supabase.
         </CardDescription>
       </CardHeader>
+
       <CardContent className="space-y-4">
-        <Alert variant="destructive">
+        <Alert
+          variant="destructive"
+          className="bg-white text-red-600 border border-red-300"
+        >
           <AlertDescription className="text-sm whitespace-pre-wrap break-words">
             {error}
           </AlertDescription>
         </Alert>
+
         <div className="pt-2">
-          {isFirebaseError ? (
+          {isSupabaseError ? (
             <div className="space-y-3">
-              <Badge variant="outline" className="bg-amber-100 text-amber-800 border-amber-300">
-                Firebase Database Error
+              <Badge
+                variant="outline"
+                className="bg-white text-red-600 border-red-300"
+              >
+                Supabase Error
               </Badge>
               <p className="text-sm text-muted-foreground">
-                There seems to be an issue with the Firebase Realtime Database connection. This could be due to:
+                There seems to be an issue with the Supabase connection. This might be due to:
               </p>
               <ul className="list-disc pl-5 text-sm text-muted-foreground">
-                <li>Firebase database rules restricting access</li>
-                <li>Incorrect database path (should be '/news')</li>
-                <li>Network connectivity issues</li>
-                <li>Database URL configuration problems</li>
+                <li>Incorrect Supabase project URL or API key</li>
+                <li>Missing or incorrect `.env` configuration</li>
+                <li>Row Level Security (RLS) preventing access to the table</li>
+                <li>Network or CORS-related issues</li>
               </ul>
               <p className="text-sm text-muted-foreground">
-                Please check your Firebase console and database configuration.
+                Please check your Supabase project settings and make sure the database is reachable.
               </p>
             </div>
           ) : (
             <p className="text-sm text-muted-foreground mb-4">
-              This could be due to network connectivity issues or the Firebase service being temporarily unavailable.
-              Please try again in a few moments.
+              This could be a temporary network error or a service interruption. Please try again shortly.
             </p>
           )}
         </div>
-        <Button 
-          variant="outline" 
-          onClick={onRetry} 
-          className="mt-4"
-        >
+
+        {/* <Button variant="outline" onClick={onRetry} className="mt-4">
           Try Again
-        </Button>
+        </Button> */}
       </CardContent>
     </Card>
   );
