@@ -9,40 +9,40 @@ export function Footer() {
     {
       title: "Platform",
       links: [
-        { name: "Knowledge Hub", href: "/coming-soon" },
-        { name: "Community", href: "/community" },
+        { name: "Knowledge Hub", href: null, clickable: false },
+        { name: "Community", href: null, clickable: false },
         { name: "Pricing", href: "/pricing-page" },
         { name: "Enterprise Solutions", href: "/enterprise" },
-        { name: "About", href: "/about" },
+        { name: "About", href: null, clickable: false },
         { name: "AI Updates", href: "/ai-updates" },
       ]
     },
     {
       title: "Resources", 
       links: [
-        { name: "Blog", href: "/coming-soon" },
-        { name: "Case Studies", href: "/coming-soon" },
-        { name: "Events", href: "/coming-soon" },
-        { name: "Help Center", href: "/coming-soon" },
-        { name: "FAQs", href: "/coming-soon" },
+        { name: "Blog", href: null, clickable: false },
+        { name: "Case Studies", href: null, clickable: false },
+        { name: "Events", href: null, clickable: false },
+        { name: "Help Center", href: null, clickable: false },
+        { name: "FAQs", href: null, clickable: false },
       ]
     },
     {
       title: "Company",
       links: [
-        { name: "About Us", href: "/about" },
-        { name: "Careers", href: "/coming-soon" },
-        { name: "Contact", href: "/contact" },
-        { name: "Partners", href: "/coming-soon" },
+        { name: "About Us", href: null, clickable: false },
+        { name: "Careers", href: null, clickable: false },
+        { name: "Contact", href: null, clickable: false },
+        { name: "Partners", href: null, clickable: false },
       ]
     },
     {
       title: "Legal",
       links: [
-        { name: "Privacy Policy", href: "/coming-soon" },
-        { name: "Terms of Service", href: "/coming-soon" },
-        { name: "Cookie Policy", href: "/coming-soon" },
-        { name: "Security", href: "/coming-soon" },
+        { name: "Privacy Policy", href: null, clickable: false },
+        { name: "Terms of Service", href: null, clickable: false },
+        { name: "Cookie Policy", href: null, clickable: false },
+        { name: "Security", href: null, clickable: false },
       ]
     }
   ];
@@ -96,12 +96,18 @@ export function Footer() {
                 <ul className="space-y-3">
                   {section.links.map((link) => (
                     <li key={link.name}>
-                      <Link
-                        to={link.href}
-                        className="text-gray-300 hover:text-white font-lexend transition-colors"
-                      >
-                        {link.name}
-                      </Link>
+                      {link.clickable === false ? (
+                        <span className="text-gray-400 font-lexend cursor-default">
+                          {link.name}
+                        </span>
+                      ) : (
+                        <Link
+                          to={link.href}
+                          className="text-gray-300 hover:text-white font-lexend transition-colors"
+                        >
+                          {link.name}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
