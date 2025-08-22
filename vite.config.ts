@@ -38,6 +38,22 @@ export default defineConfig(({ mode }) => ({
           { src: "/icons/icon-384x384.png", sizes: "384x384", type: "image/png" },
           { src: "/icons/icon-512x512.png", sizes: "512x512", type: "image/png", purpose: "any" },
           { src: "/icons/maskable-icon-512x512.png", sizes: "512x512", type: "image/png", purpose: "maskable" }
+        ],
+        screenshots: [
+          {
+            src: "/icons/screenshot-desktop.png",
+            sizes: "1280x800",
+            type: "image/png",
+            form_factor: "wide",
+            label: "Desktop view of Gurukul Code"
+          },
+          {
+            src: "/icons/screenshot-mobile.png", 
+            sizes: "640x1136",
+            type: "image/png",
+            form_factor: "narrow",
+            label: "Mobile view of Gurukul Code"
+          }
         ]
       },
       workbox: {
