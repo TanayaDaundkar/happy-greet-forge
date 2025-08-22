@@ -1,12 +1,14 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { VitePWA } from "vite-plugin-pwa";
+import { componentTagger } from "lovable-tagger";
 import path from "path";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   server: { host: "::", port: 8080 },
   plugins: [
     react(),
+    mode === 'development' && componentTagger(),
     VitePWA({
       // This enables the virtual:pwa-register import and auto updates
       registerType: "autoUpdate",
@@ -92,8 +94,8 @@ export default defineConfig({
         ]
       }
     })
-  ],
+  ].filter(Boolean),
   resolve: {
     alias: { "@": path.resolve(__dirname, "./src") }
   }
-});
+}));
