@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { Mail, Phone, Instagram } from 'lucide-react';
+import { Mail, Phone, Instagram, Twitter, Linkedin } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -82,6 +82,8 @@ export function Footer() {
             {/* Social Media */}
             <div className="flex space-x-4 text-[#40C7E8]">
               <Instagram className="h-5 w-5" />
+              <Twitter className="h-5 w-5" />
+              <Linkedin className="h-5 w-5" />
             </div>
           </div>
 

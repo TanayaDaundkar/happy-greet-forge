@@ -6,7 +6,7 @@ export const menuItems: MenuItem[] = [
     title: "Platform",
     path: "/platform",
     submenu: [
-      { title: "Career Development", path: "/career-development" },
+      { title: "Career Development", path: "/career-development"},
       { title: "FinCode", path: "/fincode" },
       { title: "Let's Advance", path: "/lets-advance" },
     ],
